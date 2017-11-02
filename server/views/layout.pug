@@ -1,0 +1,42 @@
+doctype html
+html(lang="en")
+    head
+        link(rel='stylesheet', href='/static/css/main.css')
+      
+    body
+        h2 API Tests Example:
+        h3 Submit issues for apitest
+        if saveMessage
+            p #{saveMessage}
+        form(action='/api/issues/apitest?', method='POST')
+            input(type='text', placeholder='*Title', name='issue_title')
+            input(type='text', placeholder='*Text', name='issue_text')
+            input(type='text', placeholder='*Created by', name='created_by')
+            input(type='text', placeholder='Assigned to', name='assigned_to')
+            input(type='text', placeholder='Status text', name='status_text')
+            button(type='submit') Submit Issue
+
+        h3 Update issues for apitest
+        if updateMessage
+            p #{updateMessage}
+        form(action='/api/issues/apitest?_method=PUT', method='POST')
+            input(type='text', placeholder='*_id', name='_id')
+            input(type='text', placeholder='*Title', name='issue_title')
+            input(type='text', placeholder='*Text', name='issue_text')
+            input(type='text', placeholder='*Created by', name='created_by')
+            input(type='text', placeholder='Assigned to', name='assigned_to')
+            input(type='text', placeholder='Status text', name='status_text')
+            button(type='submit') Submit Issue
+
+        h3 Delete issues for apitest
+        if deleteMessage
+            p #{deleteMessage}
+        form(action='/api/issues/apitest?_method=DELETE', method='POST')
+            input(type='text', placeholder='*_id', name='_id')
+            button(type='submit') Delete Issue
+
+        if issues
+            #{issues}
+
+        div(id='app')
+        script(src='/static/bundle.js', type='text/javascript')
